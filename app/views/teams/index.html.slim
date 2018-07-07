@@ -1,15 +1,7 @@
 p#notice = notice
 
-h1 Teams
-
-table
-  thead
-    tr
-      th = Team.human_attribute_name(:name)
-      th = Team.human_attribute_name(:formation)
-      th colspan="3"
-
-  tbody
-    = render @teams
+- @teams.each_slice(3) do |group|
+  .columns
+    = render group
 
 = link_to 'New Team', new_team_path

@@ -4,6 +4,7 @@
   "dependencies": {
     "@rails/webpacker": "3.5",
     "babel-preset-react": "^6.24.1",
+    "bulma": "^0.7.1",
     "html2canvas": "^1.0.0-alpha.12",
     "prop-types": "^15.6.2",
     "rails-ujs": "^5.2.0",

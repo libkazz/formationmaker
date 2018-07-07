@@ -1,25 +1,31 @@
 = form_with(model: team, local: true) do |form|
-  - if team.errors.any?
-    div#error_explanation
-      h2
-        | #{pluralize(team.errors.count, "error")}
-        | prohibited this team from being saved:
+  .hero-body
+    - if team.errors.any?
+      div#error_explanation
+        h2
+          | #{pluralize(team.errors.count, "error")}
+          | prohibited this team from being saved:
 
-      ul
-        - team.errors.full_messages.each do |message|
-          li = message
+        ul
+          - team.errors.full_messages.each do |message|
+            li = message
 
-  .form-group
-    = form.label :name
-    = form.text_field :name
+    .field
+      = form.label :name, class: 'label'
+      .control
+        = form.text_field :name, class: 'input'
 
-  .form-group
-    = form.label :formation
-    = form.select :formation_id, Formation.all.map { |f| [f.name, f.id] }
+    .field
+      = form.label :formation, class: 'label'
+      .control
+        = form.select :formation_id, Formation.all.map { |f| [f.name, f.id] }, {}, class: 'input'
 
-  .form-group
-    = form.label :published
-    = form.check_box :published
+    .field
+      .control
+        label.checkbox
+          = form.check_box :published
+          | Publish
 
-  .actions
-    = form.submit
+    .field
+      .control
+        = form.submit class: 'button is-primary'

@@ -1,5 +1,6 @@
 /* eslint no-console:0 */
 'use strict'
+import 'bulma'
 import '../src/application.sass'
 import html2canvas from 'html2canvas'
 

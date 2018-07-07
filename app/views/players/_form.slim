@@ -1,26 +1,39 @@
 = form_with(model: [player.team, player], local: true) do |form|
-  - if player.errors.any?
-    #error_explanation
-      h2
-        | #{pluralize(player.errors.count, "error")}
-        | prohibited this player from being saved:
+  .hero
+    .hero-body
+      - if player.errors.any?
+        #error_explanation
+          h2
+            | #{pluralize(player.errors.count, "error")}
+            | prohibited this player from being saved:
 
-      ul
-        - player.errors.full_messages.each do |message|
-          li = message
+          ul
+            - player.errors.full_messages.each do |message|
+              li = message
 
-  .form-group
-    = form.label :name
-    = form.text_field :name
+      .field
+        = form.label :name, class: 'label'
+        .control
+          = form.text_field :name, class: 'input'
 
-  .form-group
-    = form.label :title
-    = form.text_field :title
+      .field
+        = form.label :title, class: 'label'
+        .control
+          = form.text_field :title, class: 'input'
 
-  .form-group
-    = form.label :photo
-    = form.file_field :photo
+      .field
+        = form.label :photo, class: 'label'
+        .control.file
+          = image_tag player.photo.small.url, size: '80x80', style: 'height: 80px'
 
-  div.actions
-    = form.submit
+          label.file-label style='margin-left: 5px'
+            = form.file_field :photo, class: 'file-input'
+            span.file-cta
+              /span.file-icon
+                i.fas.fa-upload
+              span.file-label Choose a file…
+
+      .field
+        .control
+          = form.submit class: 'button is-primary'
 
