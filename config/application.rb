@@ -29,5 +29,8 @@ module Formationmaker
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Don't log very long params.
+    config.filter_parameters += %w(image_cache)
   end
 end

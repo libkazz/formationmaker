@@ -1,0 +1,15 @@
+html
+  head
+    meta charset="UTF-8" /
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_pack_tag 'application', media: 'all'
+    = javascript_pack_tag 'application'
+  body
+    #header
+      = link_to root_path
+        = image_tag 'logo.png'
+    #main
+      = yield
+    #footer
+      = link_to '&copy; formationmaker'.html_safe, root_path

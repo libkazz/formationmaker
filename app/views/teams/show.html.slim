@@ -1,0 +1,30 @@
+.team
+  .team_header
+    .team_name
+      = @team.name
+    .team_formation-name
+      = @team.formation.name
+    = link_to 'Edit', edit_team_path(@team), class: 'action' if owner?
+  - if owner?
+    .team_formation#capture
+      = image_tag '/images/field.png', size: '620x510', class: 'team_formation_background'
+      - @team.players.each do |player|
+        .player style=(player.position_style)
+          = image_tag player.photo.url, class: 'player_img'
+          .player_text
+            - if player.name.present?
+              .player_name = player.name
+            - if player.title.present?
+              .player_title = player.title
+            - if owner?
+              = link_to 'Edit', edit_team_player_path(@team, player), class: 'player_action action'
+  - else
+    img.team_formation-img src=(@team.image_cache)
+
+.hide
+  = form_with(model: @team, remote: true, id: 'update_image_cache_form', class: 'hide') do |form|
+    = form.hidden_field :image_cache
+
+javascript:
+  let dom = document.getElementById('capture');
+  if(dom != null) ImageUpdate(dom);

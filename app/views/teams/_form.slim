@@ -1,0 +1,25 @@
+= form_with(model: team, local: true) do |form|
+  - if team.errors.any?
+    div#error_explanation
+      h2
+        | #{pluralize(team.errors.count, "error")}
+        | prohibited this team from being saved:
+
+      ul
+        - team.errors.full_messages.each do |message|
+          li = message
+
+  .form-group
+    = form.label :name
+    = form.text_field :name
+
+  .form-group
+    = form.label :formation
+    = form.select :formation_id, Formation.all.map { |f| [f.name, f.id] }
+
+  .form-group
+    = form.label :published
+    = form.check_box :published
+
+  .actions
+    = form.submit

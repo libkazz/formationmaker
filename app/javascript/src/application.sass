@@ -1,0 +1,62 @@
+body
+  margin: 0
+  background-color: #fff
+#main
+  width: 620px
+  height: 580px
+  margin: 0 auto
+#header
+  text-align: center
+#footer
+  text-align: center
+  padding-top: 5px
+  padding-bottom: 5px
+  background-color: #333
+  color: #fff
+  a
+    color: #fff
+.team
+  margin-bottom: 30px
+  &_header
+    display: flex
+  &_name
+    margin-right: auto
+    padding-left: 5px
+    font-size: 24px
+    font-weight: bold
+  &_formation-name
+  &_formation-img
+    width: 620px
+    height: 510px
+  &_formation
+    width: 620px
+    margin: 0 auto
+    position: relative
+  &_formation_background
+    position: absolute
+    opacity: 0.8
+.player
+  position: absolute
+  z-index: 1
+  &_img
+    position: relative
+    height: 80px
+    width: 80px
+  &_text
+    position: relative
+    font-weight: bold
+    font-size: 12px
+  &_name
+    display: inline
+  &_title
+    display: inline
+    &::before
+      content: '('
+      margin-left: 3px
+    &::after
+      content: ')'
+  &_action
+    display: inline-block
+    margin-left: 3px
+.hide
+  display: none !important

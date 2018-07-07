@@ -1,0 +1,15 @@
+p#notice = notice
+
+h1 Teams
+
+table
+  thead
+    tr
+      th = Team.human_attribute_name(:name)
+      th = Team.human_attribute_name(:formation)
+      th colspan="3"
+
+  tbody
+    = render @teams
+
+= link_to 'New Team', new_team_path

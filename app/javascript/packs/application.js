@@ -1,10 +1,27 @@
 /* eslint no-console:0 */
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
-//
-// To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
-// layout file, like app/views/layouts/application.html.erb
+'use strict'
+import '../src/application.sass'
+import html2canvas from 'html2canvas'
 
-console.log('Hello World from Webpacker')
+import Rails from 'rails-ujs'
+Rails.start()
+
+global.Rails = Rails
+global.ImageUpdate = function(dom){
+  dom.querySelectorAll('a.action').forEach(a => { a.classList.add('hide') })
+
+  html2canvas(dom, {width: 620, height: 510}).then(canvas => {
+    dom.querySelectorAll('a.action').forEach(a => { a.classList.remove('hide') })
+
+    let form = document.getElementById('update_image_cache_form');
+    form.elements['team[image_cache]'].value = canvas.toDataURL(0.5);
+
+    let data = Rails.serializeElement(form);
+    Rails.ajax({
+      type: 'POST',
+      url: document.location.href,
+      data: data,
+      dataType: 'json'
+    })
+  });
+}
