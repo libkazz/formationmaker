@@ -11,7 +11,7 @@ global.Rails = Rails
 global.ImageUpdate = function(dom){
   dom.querySelectorAll('a.action').forEach(a => { a.classList.add('hide') })
 
-  html2canvas(dom, {width: 620, height: 510}).then(canvas => {
+  html2canvas(dom, {width: 620, height: 510, useCORS: true, logging: true}).then(canvas => {
     dom.querySelectorAll('a.action').forEach(a => { a.classList.remove('hide') })
 
     let form = document.getElementById('update_image_cache_form');
